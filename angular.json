@@ -5,7 +5,11 @@
   "projects": {
     "angular7ReactiveForm": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:application": {     
+      "strict": true
+      }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -94,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c4ed014a-0bb9-4225-b53c-71064cf05bb4"
   }
 }
