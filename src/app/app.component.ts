@@ -28,9 +28,6 @@ export class AppComponent {
   address: FormArray;
 
 
-  hideRemoveButton = true;
-  showSubmitButton = false;
-
   constructor(private formBuilder: FormBuilder) {
 
     this.contactForm = this.formBuilder.group({
@@ -134,7 +131,6 @@ export class AppComponent {
 
   addAddress() {
     this.address.push(this.createAddress());
-    this.showSubmitButton = this.address.controls.length > 0;
   }
 
   removeAddress() {
