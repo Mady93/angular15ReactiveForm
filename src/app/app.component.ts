@@ -13,19 +13,13 @@ export class AppComponent {
 
   contactForm: FormGroup;
 
-  firstnameControl: FormControl;
-  lastnameControl: FormControl;
-  emailControl: FormControl;
-  genderControl: FormControl;
-
-
   countryList: any[] = [
     { id: 1, name: 'Italy' },
     { id: 2, name: 'USA' },
     { id: 3, name: 'England' }
   ];
 
-  address: FormArray;
+
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -64,78 +58,81 @@ export class AppComponent {
 
 
 
-      country: this.formBuilder.group({
-        selectedCountry: ['',
+      address: this.formBuilder.group({
+        country: ['',
           [
             Validators.required
           ]
+        ],
+        city: ['',
+          [
+            Validators.minLength(2),
+            Validators.pattern('^[^0-9]*$'),
+            Validators.required
+          ]
+        ],
+        street: ['', [
+
+          Validators.minLength(2),
+          Validators.pattern('^[^0-9]*$'),
+          Validators.required
         ]
+        ],
+        zipCode: ['', [
+          Validators.minLength(4),
+          Validators.pattern('^[0-9]*$'),
+          Validators.required
+        ]
+        ]
+
       }),
-
-
-
-
-      address: this.formBuilder.array([this.createAddress()], [Validators.required, Validators.minLength(1)])
 
     });
 
 
 
-    this.firstnameControl = <FormControl>this.contactForm.get('firstname');
-    this.lastnameControl = <FormControl>this.contactForm.get('lastname');
-    this.emailControl = <FormControl>this.contactForm.get('email');
-    this.genderControl = <FormControl>this.contactForm.get('gender');
-
-
-    this.address = this.contactForm.get('address') as FormArray;
-
-  }
-
-  get countryFormGroup() {
-    return this.contactForm.get('country') as FormGroup;
-  }
-
-  get selectedCountryControl() {
-    return this.countryFormGroup.get('selectedCountry');
   }
 
 
 
 
 
-  createAddress() {
-    return this.formBuilder.group({
-      city: ['',
-        [
-          Validators.minLength(2),
-          Validators.pattern('^[^0-9]*$'),
-          Validators.required
-        ]
-      ],
-      street: ['', [
-
-        Validators.minLength(2),
-        Validators.pattern('^[^0-9]*$'),
-        Validators.required
-      ]
-      ],
-      zipCode: ['', [
-        Validators.minLength(4),
-        Validators.pattern('^[0-9]*$'),
-        Validators.required
-      ]
-      ]
-
-    })
+  get firstnameControl() {
+    return this.contactForm.get('firstname');
   }
 
-  addAddress() {
-    this.address.push(this.createAddress());
+  get lastnameControl() {
+    return this.contactForm.get('lastname');
   }
 
-  removeAddress() {
-    this.address.removeAt(this.address.controls.length - 1);
+  get emailControl() {
+    return this.contactForm.get('email');
   }
+
+  get genderControl() {
+    return this.contactForm.get('gender');
+  }
+
+  get countryControl() {
+    return this.contactForm.get('address.country');
+  }
+
+  get cityControl() {
+    return this.contactForm.get('address.city');
+  }
+
+  get streetControl() {
+    return this.contactForm.get('address.street');
+  }
+
+  get zipCodeControl() {
+    return this.contactForm.get('address.zipCode');
+  }
+
+
+
+
+
 
   onSubmit() {
 

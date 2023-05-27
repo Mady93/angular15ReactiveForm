@@ -18,24 +18,24 @@
     <div>
       <label for="firstname">First Name: </label>
       <input type="text" formControlName="firstname" id="firstname" name="firstname" [ngClass]="{
-      'is-invalid': firstnameControl.invalid && firstnameControl.dirty,
-      'is-valid': firstnameControl.valid && firstnameControl.dirty
+      'is-invalid': contactForm.get('firstname').invalid && contactForm.get('firstname').dirty,
+      'is-valid': contactForm.get('firstname').valid && contactForm.get('firstname').dirty
       }">
     </div>
 
     <br>
 
-    <div *ngIf="!firstnameControl.valid && (firstnameControl.dirty || firstnameControl.touched)" [ngClass]="'error'">
+    <div *ngIf="!contactForm.get('firstname').valid && (contactForm.get('firstname').dirty || contactForm.get('firstname').touched)" [ngClass]="'error'">
 
-      <div *ngIf="firstnameControl.errors['required'] && firstnameControl.touched">
+      <div *ngIf="contactForm.get('firstname').errors['required'] && contactForm.get('firstname').touched">
         Firstname is required!
       </div>
-      <div *ngIf="firstnameControl.errors['minlength'] && firstnameControl.touched">
+      <div *ngIf="contactForm.get('firstname').errors['minlength'] && contactForm.get('firstname').touched">
         Firstname minimum lenghth is {{firstnameControl.errors['minlength'].requiredLength}}
       </div>
 
-      <div *ngIf="firstnameControl.errors['pattern'] && firstnameControl.touched">
-        Firstname pattern is {{firstnameControl.errors['pattern'].requiredPattern}}
+      <div *ngIf="contactForm.get('firstname').errors['pattern'] && contactForm.get('firstname').touched">
+        Firstname pattern is {{contactForm.get('firstname').errors['pattern'].requiredPattern}}
         <p>
           Enter only characters from
           <span style="color: darkred;">a</span> to <span style="color: darkred;">z</span>
@@ -56,25 +56,25 @@
     <div>
       <label for="lastname">Last Name: </label>
       <input type="text" formControlName="lastname" id="lastname" name="lastname" [ngClass]="{
-    'is-invalid': lastnameControl.invalid && lastnameControl.dirty,
-    'is-valid': lastnameControl.valid && lastnameControl.dirty
+    'is-invalid': contactForm.get('lastname').invalid && contactForm.get('lastname').dirty,
+    'is-valid': contactForm.get('lastname').valid && contactForm.get('lastname').dirty
     }">
     </div>
 
     <br>
 
-    <div *ngIf="!lastnameControl.valid && (lastnameControl.dirty || lastnameControl.touched)" [ngClass]="'error'">
+    <div *ngIf="!contactForm.get('lastname').valid && (contactForm.get('lastname').dirty || contactForm.get('lastname').touched)" [ngClass]="'error'">
 
-      <div *ngIf="lastnameControl.errors['required'] && lastnameControl.touched">
+      <div *ngIf="contactForm.get('lastname').errors['required'] && contactForm.get('lastname').touched">
         Lastname is required!
       </div>
 
-      <div *ngIf="lastnameControl.errors['minlength'] && lastnameControl.touched">
+      <div *ngIf="contactForm.get('lastname').errors['minlength'] && contactForm.get('lastname').touched">
         Lastname minimum lenghth is {{lastnameControl.errors['minlength'].requiredLength}}
       </div>
 
-      <div *ngIf="lastnameControl.errors['pattern'] && lastnameControl.touched">
-        Lastname pattern is {{lastnameControl.errors['pattern'].requiredPattern}}
+      <div *ngIf="contactForm.get('lastname').errors['pattern'] && contactForm.get('lastname').touched">
+        Lastname pattern is {{contactForm.get('lastname').errors['pattern'].requiredPattern}}
 
         <p>
           Enter only characters from
@@ -97,22 +97,22 @@
 
     <div>
       <label for="email">Email: </label>
-      <input type="text" formControlName="email" id="email" name="email" [ngClass]="{
-    'is-invalid': emailControl.invalid && emailControl.dirty,
-    'is-valid': emailControl.valid && emailControl.dirty
+      <input type="email" formControlName="email" id="email" name="email" [ngClass]="{
+    'is-invalid': contactForm.get('email').invalid && contactForm.get('email').dirty,
+    'is-valid': contactForm.get('email').valid && contactForm.get('email').dirty
     }">
     </div>
 
     <br>
 
-    <div *ngIf="!emailControl.valid && (emailControl.dirty || emailControl.touched)" [ngClass]="'error'">
+    <div *ngIf="!contactForm.get('email').valid && (contactForm.get('email').dirty || contactForm.get('email').touched)" [ngClass]="'error'">
 
-      <div *ngIf="emailControl.errors['required'] && emailControl.touched">
+      <div *ngIf="contactForm.get('email').errors['required'] && contactForm.get('email').touched">
         Email is required!
       </div>
 
-      <div *ngIf="emailControl.errors['pattern'] && emailControl.touched">
-        Email pattern is {{emailControl.errors['pattern'].requiredPattern}}
+      <div *ngIf="contactForm.get('email').errors['pattern'] && contactForm.get('email').touched">
+        Email pattern is {{contactForm.get('email').errors['pattern'].requiredPattern}}
 
         <p>
           Enter characters from
@@ -138,9 +138,9 @@
       <input type="radio" formControlName="gender" value="male" id="gender" name="gender"> Male
       <input type="radio" formControlName="gender" value="female" id="gender" name="gender"> Female
 
-      <div *ngIf="!genderControl.valid && (genderControl.dirty || genderControl.touched)" [ngClass]="'error'">
+      <div *ngIf="!contactForm.get('gender').valid && (contactForm.get('gender').dirty || contactForm.get('gender').touched)" [ngClass]="'error'">
 
-        <div *ngIf="genderControl.errors['required'] && genderControl.touched">
+        <div *ngIf="contactForm.get('gender').errors['required'] && contactForm.get('gender').touched">
 
           <p>Gender is required!</p>
 
@@ -159,14 +159,14 @@
 
 
 
-    <div formGroupName="country">
+    <div formGroupName="address">
 
       <label for="country">Country: </label>
 
-      <select id="country" formControlName="selectedCountry" name="selectedCountry"
+      <select id="country" formControlName="country" name="country"
         [ngClass]="{
-        'is-invalid': contactForm.get('country').get('selectedCountry').invalid && (contactForm.get('country').get('selectedCountry').dirty || contactForm.get('country').get('selectedCountry').touched),
-        'is-valid': contactForm.get('country').get('selectedCountry').valid && (contactForm.get('country').get('selectedCountry').dirty || contactForm.get('country').get('selectedCountry').touched)}">
+        'is-invalid': contactForm.get('address.country').invalid && (contactForm.get('address.country').dirty || contactForm.get('address.country').touched),
+        'is-valid': contactForm.get('address.country').valid && (contactForm.get('address.country').dirty || contactForm.get('address.country').touched)}">
 
         <option value="">Select country</option>
         <option *ngFor="let country of countryList" [ngValue]="country.id">{{ country.name }}</option>
@@ -176,57 +176,44 @@
       <br>
       <br>
       <div
-        *ngIf="contactForm.get('country').get('selectedCountry').invalid && (contactForm.get('country').get('selectedCountry').dirty || contactForm.get('country').get('selectedCountry').touched)"
+        *ngIf="contactForm.get('address.country').invalid && (contactForm.get('address.country').dirty || contactForm.get('address.country').touched)"
         class="error">
 
-        <div *ngIf="contactForm.get('country').get('selectedCountry').errors['required']">
+        <div *ngIf="contactForm.get('address.country').errors['required']">
           Country is required
         </div>
 
       </div>
 
-    </div>
-
-
-
-
+  
 
 
     <br>
 
 
 
-
-    <h2 style="text-align: center;">Address Information: </h2>
-
-    <br>
-
-    <div formArrayName="address">
-
-      <div *ngFor="let addressGroup of address.controls; let i = index" [formGroupName]="i">
-
-        <label for="city{{i}}">City: </label>
+        <label for="city">City: </label>
         <input type="text" [ngClass]="{
-      'is-invalid': address.controls[i].get('city').invalid && address.controls[i].get('city').dirty,
-      'is-valid': address.controls[i].get('city').valid && address.controls[i].get('city')
-      }" id="city{{i}}" formControlName="city">
+      'is-invalid': contactForm.get('address.city').invalid && contactForm.get('address.city').dirty,
+      'is-valid': contactForm.get('address.city').valid && contactForm.get('address.city')
+      }" id="city" formControlName="city">
 
         <br>
 
         <div
-          *ngIf="address.controls[i].get('city').invalid && (address.controls[i].get('city').dirty || address.controls[i].get('city').touched)"
+          *ngIf="contactForm.get('address.city').invalid && (contactForm.get('address.city').dirty || contactForm.get('address.city').touched)"
           class="error">
 
-          <div *ngIf="address.controls[i].get('city').errors['required'] && address.controls[i].get('city').touched">
+          <div *ngIf="contactForm.get('address.city').errors['required'] && contactForm.get('address.city').touched">
             City is required!
           </div>
 
-          <div *ngIf="address.controls[i].get('city').errors['minlength'] && address.controls[i].get('city').touched">
-            City minimum length is {{ address.controls[i].get('city').errors['minlength'].requiredLength }}
+          <div *ngIf="contactForm.get('address.city').errors['minlength'] && contactForm.get('address.city').touched">
+            City minimum length is {{ contactForm.get('address.city').errors['minlength'].requiredLength }}
           </div>
 
-          <div *ngIf="address.controls[i].get('city').errors['pattern'] && address.controls[i].get('city').touched">
-            City pattern is {{ address.controls[i].get('city').errors['pattern'].requiredPattern }}
+          <div *ngIf="contactForm.get('address.city').errors['pattern'] && contactForm.get('address.city').touched">
+            City pattern is {{ contactForm.get('address.city').errors['pattern'].requiredPattern }}
 
             <p>
               Inserting numbers is prohibited!
@@ -246,30 +233,30 @@
 
 
 
-        <label for="street{{i}}">Street</label>
+        <label for="street">Street</label>
         <input type="text" [ngClass]="{
-      'is-invalid': address.controls[i].get('street').invalid && address.controls[i].get('street').dirty,
-      'is-valid': address.controls[i].get('street').valid && address.controls[i].get('street').dirty
-      }" id="street{{i}}" formControlName="street">
+      'is-invalid': contactForm.get('address.street').invalid && contactForm.get('address.street').dirty,
+      'is-valid': contactForm.get('address.street').valid && contactForm.get('address.street').dirty
+      }" id="street" formControlName="street">
 
         <br>
 
         <div
-          *ngIf="!address.controls[i].get('street').valid && (address.controls[i].get('street').dirty || address.controls[i].get('street').touched)"
+          *ngIf="!contactForm.get('address.street').valid && (contactForm.get('address.street').dirty || contactForm.get('address.street').touched)"
           [ngClass]=" 'error' ">
 
           <div
-            *ngIf="address.controls[i].get('street').errors['required'] && address.controls[i].get('street').touched">
+            *ngIf="contactForm.get('address.street').errors['required'] && contactForm.get('address.street').touched">
             Street is required!
           </div>
 
           <div
-            *ngIf="address.controls[i].get('street').errors['minlength'] && address.controls[i].get('street').touched">
-            Street minimum lenghth is {{address['street'].errors['minlength'].requiredLength}}
+            *ngIf="contactForm.get('address.street').errors['minlength'] && contactForm.get('address.street').touched">
+            Street minimum lenghth is {{contactForm.get('address.street').errors['minlength'].requiredLength}}
           </div>
 
-          <div *ngIf="address.controls[i].get('street').errors['pattern'] && address.controls[i].get('street').touched">
-            Street pattern is {{address.controls[i].get('street').errors['pattern'].requiredPattern}}
+          <div *ngIf="contactForm.get('address.street').errors['pattern'] && contactForm.get('address.street').touched">
+            Street pattern is {{contactForm.get('address.street').errors['pattern'].requiredPattern}}
 
             <p>
               Inserting numbers is prohibited!
@@ -289,59 +276,43 @@
 
 
 
-        <label for="zipCode{{i}}">Zip Code</label>
+        <label for="zipCode">Zip Code: </label>
         <input type="text" [ngClass]="{
-          'is-invalid': address.controls[i].get('zipCode').invalid && address.controls[i].get('zipCode').dirty,
-          'is-valid': address.controls[i].get('zipCode').valid && address.controls[i].get('zipCode').dirty
-          }" id="zipCode{{i}}" formControlName="zipCode">
+          'is-invalid': contactForm.get('address.zipCode').invalid && contactForm.get('address.zipCode').dirty,
+          'is-valid': contactForm.get('address.zipCode').valid && contactForm.get('address.zipCode').dirty
+          }" id="zipCode" formControlName="zipCode">
 
         <br>
 
         <div
-          *ngIf="!address.controls[i].get('zipCode').valid && (address.controls[i].get('zipCode').dirty || address.controls[i].get('zipCode').touched)"
+          *ngIf="!contactForm.get('address.zipCode').valid && (contactForm.get('address.zipCode').dirty || contactForm.get('address.zipCode').touched)"
           [ngClass]=" 'error' ">
 
           <div
-            *ngIf="address.controls[i].get('zipCode').errors['required'] && address.controls[i].get('zipCode').touched">
+            *ngIf="contactForm.get('address.zipCode').errors['required'] && contactForm.get('address.zipCode').touched">
             Street is required!
           </div>
 
           <div
-            *ngIf="address.controls[i].get('zipCode').errors['minlength'] && address.controls[i].get('zipCode').touched">
-            Zip code minimum lenghth is {{address.controls[i].get('zipCode').errors['minlength'].requiredLength}}
+            *ngIf="contactForm.get('address.zipCode').errors['minlength'] && contactForm.get('address.zipCode').touched">
+            Zip code minimum lenghth is {{contactForm.get('address.zipCode').errors['minlength'].requiredLength}}
           </div>
 
           <div
-            *ngIf="address.controls[i].get('zipCode').errors['pattern'] && address.controls[i].get('zipCode').touched">
-            Zip code pattern is {{address.controls[i].get('zipCode').errors['pattern'].requiredPattern}}
+            *ngIf="contactForm.get('address.zipCode').errors['pattern'] && contactForm.get('address.zipCode').touched">
+            Zip code pattern is {{contactForm.get('address.zipCode').errors['pattern'].requiredPattern}}
             <p>Accept only numbers!</p>
           </div>
 
         </div>
 
-        <br>
 
-      </div>
 
-      <br>
+
+
+
 
     </div>
-
-    <br>
-
-
-    <button class="btn" type="button" (click)="addAddress()">Add Address</button>
-
-
-
-
-    <br>
-
-    <br>
-
-    <button class="btn" type="button" (click)="removeAddress()">Remove Address</button>
-
-    <br>
 
     <br>
 
